@@ -191,6 +191,28 @@ footer .mono{color:#6fbfa1}
   .ch,.principle,.result,.g-card{animation:rise .5s ease both}
   @keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
 }
+@media print {
+  /* 1. 배경·색 강제 출력 */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  /* 2. 리빌 애니메이션 끄기 → opacity:0 잔상 제거 (흐림 방지 핵심) */
+  .ch, .principle, .result, .g-card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* 3. 흰 종이 위 연회색 텍스트 진하게 */
+  :root { --faint: #4a554e; --sub: #2d3630; }
+  .rg-d { color: #3f4a44 !important; }
+  /* 4. 카드 페이지 중간 잘림 방지 */
+  .g-card, .loop-step, .rg, .sys, .bt-cell, .hs,
+  .principle, .result-grid, .tldr, .g-grid, img {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
 </style>
 </head>
 <body>
